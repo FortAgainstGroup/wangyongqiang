@@ -25,7 +25,7 @@ function GameDirector:init(scene)
     self:addButton(GameSkillLevelUp,GameTouch.levelUp,ccp(68, 375),"升级") 
     self:addButton(GameSkillDEF,GameTouch.def,ccp(128, 375),"塔防") 
 
-    self:initBullet(scene)
+    self:initBullet(scene)               ---------------------------------------------------------------
 	self:distributeCamp( )	 													----------分配阵营
 end
 
@@ -132,17 +132,16 @@ function GameDirector:addUnit2(node,state,pos)
     table.insert(self._listUnit2, Unit2)
     self._layerUnit2:addChild(Unit2)
 end
-function  GameDirector:initBullet(scene)
+function  GameDirector:initBullet(scene)        ----------------------------------
 	self._listBullet = {}
-	self._layerBullet = display.newNode()
-	scene:addChild(self._layerBullet)
+	self._layerBullet = display.newNode()----------------------------------------
+	scene:addChild(self._layerBullet)-----------------------------------------------
 end
-function  GameDirector:addBullet(node,pos,angle)
-	--local pos = self:getPositionInCCPoint()
-	local Bullet = ClassBullet.new()
-    Bullet:init(node,pos,13,angle)
-    table.insert(self._listBullet, Bullet)
-    self._layerBullet:addChild(Bullet)
+function  GameDirector:addBullet(node,pos,angle)---------------------------------------------
+	local Bullet = ClassBullet.new()---------------------------------------------
+    Bullet:init(node,pos,13,angle)-------------------------------------------------------
+    table.insert(self._listBullet, Bullet)----------------------------------------------------
+    self._layerBullet:addChild(Bullet)---------------------------------------------
 end
 function GameDirector:distributeCamp(  ) 										----------分配阵营
 	self._camp1 = {} ----------我方阵营

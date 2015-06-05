@@ -31,7 +31,7 @@ function Unit:init( node,state,pos,camp )
 	self._SD = node.SD    ----------射程
 	self._ASP = node.ASP    ----------攻速
     self._cmd = state ----------单位接到的命令
-    self._angle = 0 -------------角度
+    self._angle = 0 -------------角度            -------------------------------asdasdasdasdasd
     self:setState(state)
     self._pos = ccp(0,0)
    
@@ -75,7 +75,7 @@ function Unit:update()
 		--updateGoal(self._goal)
 		self:updateGoal()
 	end
-    updateObjectList(g_director._listBullet)
+    updateObjectList(g_director._listBullet)            ----------------------------asdasdasdasdasd
 	self._lifeLabel:setString(self._life)
 end
 
@@ -100,7 +100,7 @@ function Unit:searchEnemy() 													---------搜索敌人
 	    		local pos = self:getPositionInCCPoint()
 	    		if((curpos1.x<curpos2.x and self._speedX > 0) or (curpos1.x>curpos2.x and self._speedX <0))then
 	        	self:setState(State.fight)
-	        	self._angle = getAngle(curpos1,curpos2,distance)
+	        	self._angle = getAngle(curpos1,curpos2,distance)  ----------------------------------------sdfsdfsdfsdfsdf
 	        	--g_director:addBullet(GameBullet,self._pos,self._angle)
 	        		-- updateObjectList(self._listFort)
 	        	table.insert(enemy._listAttackMe,self)
@@ -139,7 +139,7 @@ function Unit:toAttack() 														----------向敌方城堡进攻
 	local topos = self._camp.enemyFort:getPositionInCCPoint()
 	local distance
 	self._speedX,self._speedY,distance = getSpeedXY(curpos,topos,self._speed)
-	self._angle = getAngle(curpos,topos,distance)
+	self._angle = getAngle(curpos,topos,distance)              -----------------------------sdfsdfsdfsdfsdfsdsdf
 	-- self._img:setRotation(-angle)
 end
 
@@ -165,7 +165,7 @@ function Unit:updateGoal( ) 													----------攻击目标
 		self._AIN = self._AIN - self._ASP
 		if self._AIN <= 0 then
 			if self._ATK > self._goal._DEF then 		----------扣除目标生命值
-				g_director:addBullet(GameBullet,self._pos,self._angle)
+				g_director:addBullet(GameBullet,self._pos,self._angle)--------------------------------dsfsdfsdfsdfsdfs
 				self._goal._life = self._goal._life - (self._ATK-self._goal._DEF)-----------------
 			end
 			if self._goal._life <= 0 then 				----------目标生命值为零
