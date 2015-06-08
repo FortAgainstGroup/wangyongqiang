@@ -1,0 +1,32 @@
+
+<dict>
+	cocos2d.x.version: quick-cocos2d-x 2.2.5plus
+	cocos2d.x.compiled_with_profiler: false
+	cocos2d.x.compiled_with_gl_state_cache: true
+	gl.vendor: Intel
+	gl.renderer: Intel(R) HD Graphics 4600
+	gl.version: 4.2.0 - Build 10.18.10.3621
+	gl.max_texture_size: 16384
+	gl.max_texture_units: 192
+	gl.supports_PVRTC: false
+	gl.supports_NPOT: true
+	gl.supports_BGRA8888: false
+	gl.supports_discard_framebuffer: false
+	gl.supports_vertex_array_object: true
+</dict>
+lua_loadChunksFromZIP() - load zip file: E:\quick\quick-2.2.5-plus\lib\framework_precompiled\framework_precompiled.zip
+lua_loadChunksFromZIP() - loaded chunks count: 122
+------------------------------------------------
+LOAD LUA FILE: C:/Users/wangyongqiang-pc/Documents/GitHub/wangyongqiang/scripts/main.lua
+------------------------------------------------
+[LUA ERROR] [string "C:/Users/wangyongqiang-pc/Documents/GitHub/wangyongqiang/scripts/app/MyApp.lua"]:2: module 'config' not found:
+	no field package.preload['config']
+	no file '.\config.lua'
+	no file 'E:\quick\quick-2.2.5-plus\player\win\lua\config.lua'
+	no file 'E:\quick\quick-2.2.5-plus\player\win\lua\config\init.lua'
+	no file 'C:/Users/wangyongqiang-pc/Documents/GitHub/wangyongqiang/scripts/config.lua'
+	no file '.\config.dll'
+	no file 'E:\quick\quick-2.2.5-plus\player\win\config.dll'
+	no file 'E:\quick\quick-2.2.5-plus\player\win\loadall.dll'
+CCHTTPRequest[0x0001] - create request with url: http://www.google-analytics.com/collect
+CCHTTPRequest[0x0001] - request removed

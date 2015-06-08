@@ -30,7 +30,7 @@ function MainScene:initControl()
 end
 
 function MainScene:initBack()
-    local imgBack = display.newSprite("back3.jpg")
+    local imgBack = display.newSprite("back1.jpg")
     imgBack:setAnchorPoint(ccp(0,0))
     self:addChild(imgBack) 
 end
