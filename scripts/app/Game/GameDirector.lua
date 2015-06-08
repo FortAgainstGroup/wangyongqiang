@@ -2,7 +2,7 @@ local GameDirector = class("GameDirector")
 ClassFort = require("app.Game.Fort")
 ClassUnit = require("app.Game.Unit")
 ClassButton = require("app.Game.Button")
-
+ClassBullet = require("app.Game.Bullet")
 function GameDirector:ctor()
 	self._AddUnitTime = GameUnit.addTime
 	self._onTouch = GameTouch.null 	----------点击的控件名称
