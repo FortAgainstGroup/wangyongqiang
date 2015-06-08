@@ -11,7 +11,7 @@ function button:init( node,cmd,pos,label )
 	self._node = node
 	self._cmd = cmd ----------指令
 
-	self._img = display.newSprite(node.name)
+	self._img = display.newSprite(node.ico)
 	self._r=GameButton.radius
 	self._scale=GameButton.scale
 	self:setScale(self._scale)

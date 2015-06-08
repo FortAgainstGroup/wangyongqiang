@@ -21,6 +21,7 @@ function Fort:init( node )
 	self:addChild(img)
 
 	self:setPosition(node.pos) 					
+	self._pos = node.pos ----------位置
 	self._defTime  = GameSkillDEF.time ----------塔防时间											
 	self._life = node.life ----------生命
 	self._price = node.price ------------价格
@@ -30,9 +31,13 @@ function Fort:init( node )
 	self._SD = node.SD    ----------射程
 	self._ASP = node.ASP    ----------攻速
 	self._goldINC = node.goldINC ----------单位时间获得的金钱
-    self._lifeLabel = cc.ui.UILabel.new({text = "", size = 24}) 		----------显示生命值,金钱
-    				:align(display.CENTER, 0, -self._r-50)
+    self._lifeLabel = cc.ui.UILabel.new({text = "", size = 25}) 		----------显示生命值
+    				:align(display.CENTER, 1.5*(3-2*node.camp)*self._r, 25)
     				:addTo(self)
+    self._goldLabel = cc.ui.UILabel.new({text = "", size = 25}) 		----------显示金钱
+    				:align(display.CENTER, 1.5*(3-2*node.camp)*self._r, -25)
+    				:addTo(self)
+
 end
 
 function Fort:initControl()
@@ -68,15 +73,16 @@ function Fort:update()
 		self._gold = self._gold + self._goldINC
 		self._updateTime = GameData.fps
 	end
-    self._lifeLabel:setString("生命"..self._life.."金钱"..self._gold)
+    self._lifeLabel:setString("生命"..self._life)
+    self._goldLabel:setString("金钱"..self._gold)
 
 
 end
 
 function Fort:onTouch(name,x,y,prevX,prevY)
-	if getDistanceN2P(self, ccp(x, y))<self._r then
+	if math.abs(x - self._pos.x) < self._r then
 		if name == TouchEventString.began then
-	        click(self)
+	        -- click(self)
 		elseif name == TouchEventString.ended then
 	        
 		end
