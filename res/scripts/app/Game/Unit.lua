@@ -35,7 +35,6 @@ function Unit:init( node,state,pos,camp )
 	self._SD = node.SD    ----------射程
 	self._ASP = node.ASP    ----------攻速
     self._cmd = state ----------单位接到的命令
-    self._bullet = node.bullet ----------------------------给坦克子弹
     self:setState(state)
 
     self._lifeLabel = cc.ui.UILabel.new({text = "", size = 80}) 					----------显示生命值
@@ -96,9 +95,9 @@ function Unit:searchEnemy() 													---------搜索敌人
 	for i,enemy in ipairs(self._camp.enemyUnit) do
 		if enemy._state ~= State.null then
 			local distance = getDistance(self,enemy)
-	   		local distance1 = self._SD
+	   		local distance1 = enemy._r+self._SD
 	    	if distance <= distance1 then
-	    		self._goal = enemy --锁定目标 --------------------------------------减掉自己的半径
+	    		self._goal = enemy --锁定目标
 	        	self:setState(State.attack)
 				-- local toPos = enemy:getPositionInCCPoint()
 				-- self._angle = getAngle(curPos,toPos,distance)
@@ -133,8 +132,6 @@ end
 function Unit:toMove() 														----------向敌方城堡进攻
 	self._speedX = self._speed*self._camp.direction
 	self._speedY = 0
-	self._angle = 90-90*self._camp.direction
-	self._img1:setRotation(90-self._angle)
 	-- local curpos = self:getPositionInCCPoint()
 	-- local topos = self._camp.enemyFort:getPositionInCCPoint()
 	-- local distance
@@ -146,7 +143,6 @@ end
 function Unit:toAttack(  ) 														----------进攻
 	if self._goal._state == State.null then
 		self:setState(State.move)
-		return true
 	elseif self._goal == self._camp.enemyFort then
 		self._angle = 90-90*self._camp.direction
 		self._img1:setRotation(90-self._angle)
@@ -154,19 +150,13 @@ function Unit:toAttack(  ) 														----------进攻
 		local curPos = self:getPositionInCCPoint()
 		local toPos = self._goal:getPositionInCCPoint()
 		local distance = getDistance(self,self._goal)
-	 	if distance <= self._SD then
-			self._angle = getAngle(curPos,toPos,distance)              
-			self._img1:setRotation(90-self._angle)
-	  	else 
-	  		self:setState(State.move)
-	  		return true
-	  	end
-
+		self._angle = getAngle(curPos,toPos,distance)              
+		self._img1:setRotation(90-self._angle)
 	end
 		if self._goal._state ~= State.null then
 			self._AIN = self._AIN - self._ASP
 			if self._AIN <= 0 then
-				self:fire(self._bullet) 				----------发射炮弹
+				self:fire(GameBullet.track) 				----------发射炮弹
 				self._AIN = GameData.fps
 			end
 		end
@@ -208,18 +198,16 @@ function Unit:updateAttackMe() 													----------更新敌人
 	end
 end
 
-function Unit:fire( bullet ) --------------------------------------  -------------------加了爆炸弹  追踪单
+function Unit:fire( bullet ) ---------------------------------------加了追踪单
 	local curPos = self:getPositionInCCPoint()
 	if bullet == GameBullet.bullet then
-		g_director:addBullet(GameBullet,curPos,self._ATK,self._angle,self._SD,self._camp,GameBullet.bullet,self._goal)
+		g_director:addBullet(GameBullet,curPos,self._angle,self._SD,self._camp)
 	elseif bullet == GameBullet.shot then
-		g_director:addBullet(GameBullet,curPos,self._ATK,self._angle-45,self._SD,self._camp,GameBullet.bullet,self._goal)
-		g_director:addBullet(GameBullet,curPos,self._ATK,self._angle+45,self._SD,self._camp,GameBullet.bullet,self._goal)
-		g_director:addBullet(GameBullet,curPos,self._ATK,self._angle,self._SD,self._camp,GameBullet.bullet,self._goal)
+		g_director:addBullet(GameBullet,curPos,self._angle-45,self._SD,self._camp)
+		g_director:addBullet(GameBullet,curPos,self._angle+45,self._SD,self._camp)
+		g_director:addBullet(GameBullet,curPos,self._angle,self._SD,self._camp)
 	elseif bullet == GameBullet.track then
-		g_director:addBullet(GameBullet,curPos,self._ATK,self._angle,self._SD,self._camp,GameBullet.track,self._goal)
-	elseif bullet == GameBullet.GBU then
-		g_director:addBullet(GameBullet,curPos,self._ATK,self._angle,self._SD,self._camp,GameBullet.GBU,self._goal)
+		g_director:addTrackBullet(GameBullet,curPos,self._angle,self._goal,self._SD,self._camp)
 	end
 end
 

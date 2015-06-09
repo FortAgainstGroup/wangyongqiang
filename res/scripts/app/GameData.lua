@@ -77,16 +77,6 @@ GameUnit.speed = 3
 GameUnit.alertTime = 20
 GameUnit.addTime = 30
 
-GameBullet = GameBullet or{} ----------子弹
-GameBullet.name = "bullet.png"
-GameBullet.scale = 0.05
-GameBullet.radius = 80*GameBullet.scale
-GameBullet.speed = 3
-GameBullet.fly = 0  -----feixing
-GameBullet.bullet = 1 --普通弹
-GameBullet.shot = 2 --散弹
-GameBullet.track = 3 --追踪弹
-GameBullet.GBU = 4   ----爆炸弹 ----------------------------------------爆炸弹
 -- GameUnit2 = GameUnit2 or {} ----------作战单位参数
 -- GameUnit2.scale = 0.1
 -- GameUnit2.radius = 80*GameUnit2.scale
@@ -95,7 +85,6 @@ GameBullet.GBU = 4   ----爆炸弹 ----------------------------------------爆�
 -- GameUnit2.speed = 2
 
 GameTank1 = GameTank1 or {}
-
 GameTank1.ico = "tank1.jpg" --图标
 GameTank1.img1 = "tank1_1.png" --炮台
 GameTank1.img2 = "tank1_2.png" --底盘
@@ -109,7 +98,6 @@ GameTank1.ATK = 25  --攻击力
 GameTank1.DEF = 5  --防御力
 GameTank1.SD = 80    --射程
 GameTank1.ASP = 4   --攻速
-GameTank1.bullet = GameBullet.GBU      --------------------------坦克发射子弹的类型
 
 GameTank2 = GameTank2 or {}
 GameTank2.ico = "tank2.jpg" --图标
@@ -141,7 +129,7 @@ GameTank3.ATK = 25  --攻击力
 GameTank3.DEF = 5  --防御力
 GameTank3.SD = 80    --射程
 GameTank3.ASP = 4   --攻速
-GameTank3.bullet = GameBullet.shot -----------------
+
 
 GameButton = GameButton or {} ----------按钮
 GameButton.scale = 0.2
@@ -161,5 +149,11 @@ GameSkillLevelUp.scale = 0.5
 GameSkillLevelUp.radius = 125*GameSkillLevelUp.scale
 GameSkillLevelUp.price = 200 --升级所需的价格
 
-
-
+GameBullet = GameBullet or{} ----------子弹
+GameBullet.name = "bullet.png"
+GameBullet.scale = 0.05
+GameBullet.radius = 80*GameBullet.scale
+GameBullet.speed = 3
+GameBullet.bullet = 1 --普通弹
+GameBullet.shot = 2 --散弹
+GameBullet.track = 3 --追踪弹

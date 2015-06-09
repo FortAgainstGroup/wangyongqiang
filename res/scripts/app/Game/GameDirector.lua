@@ -3,11 +3,8 @@ ClassFort = require("app.Game.Fort")
 ClassUnit = require("app.Game.Unit")
 ClassButton = require("app.Game.Button")
 ClassBullet = require("app.Game.Bullet")
-<<<<<<< HEAD
-=======
 
 
->>>>>>> origin/master
 function GameDirector:ctor()
 	self._AddUnitTime = GameUnit.addTime
 	self._onTouch = GameTouch.null 	----------点击的控件名称
@@ -101,12 +98,23 @@ function  GameDirector:initBullet(scene)       			 						----------子弹
 	scene:addChild(self._layerBullet)
 end
 
-function  GameDirector:addBullet(node,pos,power,angle,sd,camp,type,goal) 						----------(子弹属性，位置，角度，射程，阵营)
+function  GameDirector:addBullet(node,pos,angle,sd,camp) 						----------(子弹属性，位置，角度，射程，阵营)
 	local Bullet = ClassBullet.new()
-    Bullet:init(node,pos,power,angle,sd,camp,type,goal)                          -----------------------------增加了子弹类型  子弹攻击力
+    Bullet:init(node,pos,30,angle,sd,camp)
     table.insert(self._listBullet, Bullet)
     self._layerBullet:addChild(Bullet)
 end
+
+function GameDirector:addTrackBullet(node,pos,angle,node1,sd,camp) 					----------追踪弹(子弹属性，位置，角度，射程，阵营)
+	local Bullet = ClassBullet.new()
+    Bullet:init(node,pos,30,angle,sd,camp)
+    Bullet._goal = node1
+    table.insert(self._listBullet, Bullet)
+    self._layerBullet:addChild(Bullet)
+end
+
+
+
 function GameDirector:touchButton(name, x, y, prevX, prevY) 					----------点击按钮
 	for i,Button in ipairs(self._listButton) do
 		if Button:onTouch(name, x, y, prevX, prevY) then
