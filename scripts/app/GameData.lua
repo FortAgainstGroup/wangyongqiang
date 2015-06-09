@@ -123,9 +123,9 @@ GameTank2.price = 60 --价格
 GameTank2.life = 50 --生命
 GameTank2.ATK = 15  --攻击力
 GameTank2.DEF = 15  --防御力
-GameTank2.SD = 40    --射程
+GameTank2.SD = 80   --射程
 GameTank2.ASP = 3   --攻速
-
+GameTank2.bullet = GameBullet.bullet      --------------------------坦克发射子弹的类型
 
 GameTank3 = GameTank3 or {}
 GameTank3.ico = "tank3.jpg" --图标
@@ -141,7 +141,7 @@ GameTank3.ATK = 25  --攻击力
 GameTank3.DEF = 5  --防御力
 GameTank3.SD = 80    --射程
 GameTank3.ASP = 4   --攻速
-GameTank3.bullet = GameBullet.shot -----------------
+GameTank3.bullet = GameBullet.shot -----------------         -----------------
 
 GameButton = GameButton or {} ----------按钮
 GameButton.scale = 0.2

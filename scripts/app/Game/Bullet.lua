@@ -56,6 +56,7 @@ function Bullet:update()
 		  end
 	    end
           self:hitUnit()
+          self:hitFort()      --------------------------------------------------------调用攻击城堡
 		if not hitR2P(GameData.rectScreen, self:getPositionInCCPoint()) then		
 			self:setState(State.null)
 		end
@@ -98,7 +99,20 @@ function Bullet:hitUnit()
 			end
 	       end
 	   end
-	--return false
 end
-
+function Bullet:hitFort()         --------------------------------------------攻击城堡
+	local curpos = self:getPositionInCCPoint()
+	local distance
+	local distance1 = self._camp.enemyFort._pos.x - curpos.x
+	if(distance1>=0)then
+	 distance =  math.abs(distance1-10)
+	else
+     distance =  math.abs(distance1+20)
+	end
+	if distance <(self._r + self._camp.enemyFort._r) then
+        self._camp.enemyFort._life = self._camp.enemyFort._life -(self._ATK-self._camp.enemyFort._DEF)
+        self:setState(State.null)
+        return true
+	end
+end
 return Bullet
